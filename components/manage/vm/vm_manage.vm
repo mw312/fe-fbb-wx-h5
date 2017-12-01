@@ -1,0 +1,133 @@
+var CONST = require('../../common/const.js'),
+    PAGE = require('../../common/js/common.js');
+
+
+var vm_manage = avalon.define({
+    $id : 'vm_manage',
+    list : [],
+    cityList : [],
+    manageDialog : false,
+    datas : {
+        item : 'innId',
+        txt : ''
+    },
+    curData : {},
+    curScale : 0,
+    curIndex : 0,
+
+    init : function () {
+        vm_manage.getCity()
+
+    },
+    initPage : function (id, page, callback) {
+        var list = [];
+        tmsky.ui.page.render({
+            id : id,
+            callbackParams : list,
+            callback : callback, // 或click : click
+            pages : page.totalPages,
+            pageNo : page.pageNo,
+            skin : 'red',
+            align : 'center',
+            totalCount : page.totalCount
+        })
+    },
+    //小站管理
+    getInnInfo : function (pageNo) {
+        var vm = vm_manage
+        var item = vm.datas.item
+        var data = {}, url = CONST.DOMAIN.BILL + '/manage/getInnInfos?t=' + new Date().getTime()
+        if (vm.datas.txt == '') {
+            return
+        }
+
+        if (item == 'innId') {
+            data = {
+                innId : vm.datas.txt,
+                innName : '',
+                pageNo : pageNo
+            }
+            if(!vm.checkIsNum(vm.datas.txt)){
+                alert('搜索客栈ID只能是数字!')
+                return
+            }
+        } else if (item == 'innName') {
+            data = {
+                innId : '',
+                innName : vm.datas.txt,
+                pageNo : pageNo
+            }
+        }
+        $.get(url, $.param(data, true)).done(function (rs) {
+            if (rs.status == 200) {
+                vm.list = rs.page.result
+                vm.initPage('managePage', rs.page, function () {
+                    var pageInfo = tmsky.ui.page.getParams("managePage")
+                    vm.getInnInfo(pageInfo.pageNo)
+                });
+            }
+        })
+
+    },
+    operateDialog : function (type, el, num, index) {
+        if (type) {
+            vm_manage.manageDialog = true
+            vm_manage.curData = el
+            vm_manage.curScale = num*100
+            vm_manage.curIndex = index
+        } else {
+            vm_manage.manageDialog = false
+            vm_manage.curData = {}
+        }
+    },
+    //设置手续费lv
+    setPoundage : function () {
+        var vm = vm_manage
+        var datas = {
+                innId : vm.curData.id,
+                poundageRatio : vm.curScale/100
+            },
+            url = CONST.DOMAIN.BILL + '/manage/setPoundage'
+        $.post(url, $.param(datas, true)).done(function (rs) {
+            vm_manage.manageDialog = false
+            if (rs.status == 200) {
+                vm.list[vm.curIndex].poundageRatio = vm.curScale/100
+            } else {
+                alert(rs.message)
+            }
+        })
+    },
+    getCity : function () {
+        var vm = vm_manage, arr = []
+        $.get(CONST.DOMAIN.PMS + '/registe/regions').done(function (rs) {
+            if (rs.status == 200) {
+                rs.regions.forEach(function (x) {
+                    var item = {
+                        id : x.id,
+                        name : x.name
+                    }
+                    arr.push(item)
+                })
+                vm.cityList = arr
+            }
+        })
+    },
+    cityTransform : function (id) {
+        var txt = ''
+        vm_manage.cityList.$model.forEach(function (x) {
+            if (x.id == id) {
+                txt = x.name
+            }
+        })
+        return txt
+    },
+    checkIsNum : function (x) {
+        var rule = /^[0-9]*[1-9][0-9]*$/
+        if (rule.test(x)) {
+            return true;
+        } else {
+            return false
+        }
+    }
+
+})

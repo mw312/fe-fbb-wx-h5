@@ -1,0 +1,171 @@
+#content {
+    padding: 0 7px 0 10px;
+}
+
+.accordion-heading, .table th {
+    white-space: nowrap;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    background-color: #fbfbfb;
+    background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f5f5f5));
+    background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: linear-gradient(top, #ffffff, #f5f5f5);
+    background-repeat: repeat-x;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+}
+
+.accordion-heading {
+    float: inherit;
+    width: 100%;
+}
+
+.accordion-heading a:hover, .dropdown a:hover {
+    text-decoration: none;
+    background: none;
+}
+
+.nav-list li a {
+    cursor: pointer;
+}
+
+.select-time {
+    width: 100px;
+    padding: 3px 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.table {
+    border: 1px solid #dddddd;
+}
+
+.table th, .table td {
+    border-right: 1px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.ft-col-red {
+    color: red;
+    font-size: 16px;
+}
+
+li {
+    list-style: none;
+}
+
+.ui-ul-footer {
+    margin-top: 20px;
+}
+
+.ui-ul-footer li {
+    line-height: 25px;
+}
+
+.table thead th {
+    line-height: 30px;
+}
+
+/*tmasky.page.css*/
+#t-page {
+    padding-bottom: 28px
+}
+
+#t-page li {
+    float: left
+}
+
+#t-page li.item {
+    border: solid 1px #ebebeb;
+    width: 30px;
+    cursor: pointer;
+    margin: 0 2px
+}
+
+#t-page li.item,#t-page input,#t-page button {
+}
+
+#t-page li.first,#t-page li.last,#t-page button {
+    padding: 0 5px
+}
+
+#t-page li.active {
+    color: #fff!important
+}
+
+#t-page li.first {
+    margin-left: 50px
+}
+
+#t-page li.last {
+    margin-right: 50px
+}
+
+#t-page .pgesize-btn {
+    padding: 0 8px
+}
+
+#t-page li.ellipsis+li {
+    border-left: solid #ebebeb 1px
+}
+
+#t-page li.ellipsis {
+    background-color: #fff;
+    width: 35px
+}
+
+#t-page li.stat-info {
+    line-height: 29px;
+    padding-right: 15px;
+    margin: 2px 0 0;
+    text-align: center
+}
+
+#t-page li,#t-page button {
+    line-height: 30px;
+    text-align: center
+}
+
+#t-page button,#t-page input {
+    border: solid 1px #ebebeb
+}
+
+#t-page button {
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: #fff
+}
+
+#t-page input {
+    padding: 1px 0 1px 3px;
+    line-height: 28px;
+    width: 30px
+}
+
+#t-page input.page-num {
+    margin: 2px 0 0
+}
+
+#t-page .page-errors {
+    clear: both;
+    line-height: 30px;
+    color: #CA0207;
+    font-size: 14px;
+    display: none
+}
+
+
+.table a {
+    cursor: pointer;
+}
+.u-dialog{
+    display: none;
+}
+#t-page li.stat-info label{
+    display: inline;
+}
