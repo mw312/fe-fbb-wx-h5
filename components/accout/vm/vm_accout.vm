@@ -1,0 +1,13 @@
+// var COMMON = require('../../common/js/common.js');
+// var CONST = require('../../common/const.js');
+// var vm_report = avalon.define({
+//     $id : 'vm_report',
+//     from: '',
+//     to: '',
+//     init: function () {
+//         var vm = vm_report;
+//         vm.from = tmsky.date.plusDate(COMMON.DATE.today(), -6, 'd', 'yyyy-MM-dd');
+//         vm.to = COMMON.DATE.today();
+//         vm.renderReport();
+//     }
+// });
