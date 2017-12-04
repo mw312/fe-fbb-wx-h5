@@ -1,0 +1,21 @@
+{
+  "name": "fangbaba-weixin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fis-conf.js",
+  "dependencies": {},
+  "devDependencies": {
+    "fis3-deploy-replace": "^1.0.2",
+    "fis3-hook-commonjs": "^0.1.25",
+    "fis3-parser-node-sass": "^0.1.9",
+    "fis3-postpackager-loader": "^2.1.4"
+  },
+  "scripts": {
+    "dev": "fis3 server start && fis3 release -wL",
+    "inner": "fis3 release inner",
+    "staging": "fis3 release staging",
+    "produciton": "fis3 release pro"
+  },
+  "author": "",
+  "license": "ISC"
+}

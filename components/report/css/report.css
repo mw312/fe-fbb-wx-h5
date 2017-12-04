@@ -1,0 +1,9 @@
+.report-title {
+    text-align: center;
+    color: #1296db;
+}
+.report-title img {
+    margin-left: 10px;
+    position: relative;
+    top: 4px;
+}
