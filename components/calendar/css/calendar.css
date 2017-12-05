@@ -1,0 +1,218 @@
+#calendar {
+    display: none
+}
+
+.date-box .selected {
+    background: #ff7f36 !important;
+}
+
+.selected {
+    color: #ffffff;
+    border: none !important;
+    background-color: #F5A623 !important;
+}
+
+/* 日历控件 */
+.date-box {
+    text-align: center;
+    font-size: .7rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    letter-spacing: 0.002rem;
+    font-family: arial, 'Hiragino Sans GB', '微软雅黑', '宋体', tahoma, Srial, helvetica, sans-serif;
+    width: 100%;
+    overflow: auto;
+    min-height: 1rem;
+    background: #fff;
+    padding-bottom: 1.5rem;
+    z-index:999
+}
+
+.date-box article {
+    padding-bottom: 1rem
+}
+
+.date-box ul, .date-box h5, .date-box p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.date-box .date {
+    background: #17bbd4;
+    margin: 0;
+    line-height: 2.5em;
+    color: #fff;
+    font-size: .8rem;
+    position: relative;
+}
+
+.date-box .date a {
+    position: absolute;
+    left: 0.16rem;
+    display: inline-block;
+    width: 0.45rem;
+    height: 100%;
+    text-decoration: none;
+    color: #fff;
+}
+
+.date-box .week {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+    background: #dfedfe;
+    line-height: 1.5em;
+    color: #333;
+    width: 100%
+}
+
+.date-box .week li {
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    box-flex: 1;
+    font-size: .8rem;
+    padding: .2rem 0;
+}
+
+.date-box .year_month {
+    line-height: 2.5em;
+    margin: 0;
+    font-size: .8rem;
+    background: #f3f8ff;
+}
+
+.date-box .day {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.date-box .day li {
+    display: inline-block;
+    vertical-align: top;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    position: relative;
+    font-size: .8rem;
+    width: 14.285714%;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.date-box .up {
+    position: absolute;
+    width: 100%;
+    top: 0.15rem;
+    left: 0;
+    line-height: 0.02rem;
+    font-size: 0.22rem;
+}
+
+.date-box .down {
+    position: absolute;
+    width: 100%;
+    bottom: 0.15rem;
+    left: 0;
+    line-height: 0.02rem;
+    font-size: 0.22rem !important;
+}
+
+.date-box .holiday {
+    position: absolute;
+    width: 100%;
+    top: 0.15rem;
+    left: 0;
+    line-height: 0.02rem;
+    font-size: 0.22rem;
+    color: #ffada1
+}
+
+.color-c {
+    color: #cccccc
+}
+
+.date-box li.select {
+    background: #F5A623;
+    color: #eee !important;
+}
+
+.date-box li.selected b {
+    display: block;
+    font-size: .6rem;
+    color: #ffffff;
+    line-height: .6rem;
+    position: absolute;
+    top: .2rem;
+    width: 100%;
+    left: 0;
+    font-weight: 400;
+}
+
+.date-box li.color-red {
+    color: #EFAB33
+}
+
+.date-box li.color-red.selected {
+    color: #ffffff
+}
+
+.remind {
+    position: fixed;
+    bottom: 0.045rem;
+    left: 0.1rem;
+    right: 0.1rem;
+    display: inline-block;
+    background: #000;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    color: #fff;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+
+.date-btn {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0
+}
+
+.date-btn div {
+    padding: .6rem 0;
+    width: 100%;
+    font-size: .9rem;
+}
+
+.date-ok {
+    background: #EFAB33;
+    color: #ffffff
+}
+
+.date-cancel {
+    background: #efab33;
+    color: #ffffff;
+
+}
+
+.date-price{
+    display: block;
+    font-size: .5rem;
+    color: #a1a1a1;
+    line-height: .5rem;
+    position: absolute;
+    bottom: .2rem;
+    width: 100%;
+    left: 0;
+    font-weight: 400;
+}
+
+.date-box li.selected .date-price{
+    color:#ffffff
+}

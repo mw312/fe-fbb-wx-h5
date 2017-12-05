@@ -43,7 +43,6 @@ var date = {
         return undefined === obj || null === obj
     },
     isBoolean : function (obj) {
-        alert(1)
         return obj && date.type(obj) === 'boolean'
     },
     getFormat : function (fmt) {
@@ -165,8 +164,7 @@ var date = {
                 d[setter](d[getter]() + num);
             }
             if (fmt)
-                return this.format(d, this.__FIELDS__.FORMAT.DATE)
-            //return this.format(d, date.isBoolean(fmt) ? this.__FIELDS__.FORMAT.DATE : fmt)
+                return this.format(d, fmt);
             return d;
         }
     }
