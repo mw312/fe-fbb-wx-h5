@@ -18,12 +18,12 @@ var vm_report = avalon.define({
         vm.renderReport();
     },
     renderReport: function () {
-        var openId = "oM3lKwdXjmdOS-lPaewtT_vWVQO8";
+        var weChatId = COMMON.COMMONuTIL.getQueryString('weChatId');
         $.showPreloader();
         $.ajax({
             type : 'GET',
             dataType: 'json',
-            url : CONST.DOMAIN.WX_SERVER + '?operation=Report&weChatId=' + openId + "&beginTime=" + vm_report.from.replace(/-/g, "") + "&endTime=" + vm_report.to.replace(/-/g, ""),
+            url : CONST.DOMAIN.WX_SERVER + '?operation=Report&weChatId=' + weChatId + "&beginTime=" + vm_report.from.replace(/-/g, "") + "&endTime=" + vm_report.to.replace(/-/g, ""),
             error : function () {
                 $.hidePreloader();
                 $.alert('查询报表出现错误');
