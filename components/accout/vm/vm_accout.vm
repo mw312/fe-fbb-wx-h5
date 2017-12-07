@@ -2,41 +2,47 @@ var COMMON = require('../../common/js/common.js');
 var CONST = require('../../common/const.js');
 var vm_accout = avalon.define({
     $id : 'vm_accout',
-    data:{
-        password:'',
-        hotelAccount:''
-    },
     init: function () {
         // 初始化时清空账号和密码
         vm_accout.data.hotelAccount=''
         vm_accout.data.password=''
+        // 绑定成功模板
+        $('body').append('<div id="jump" style="display: none"></div>');
+        document.getElementById('jump').innerHTML = __inline('../tpl/accout-jump.html');
     },
     bindAccout:function(){
-        vm = vm_accout;
-        if(vm.data.hotelAccount==''){
-            myApp.modal({
-                title:  '提示',
-                text: '请输入账号！',
-                buttons: [
-                    {
-                        text: '确定'
-                    }
-                ]
-            })
+        var hotelAccount =$("#hotelAccount").val();
+        var password =$("#password").val();
+        if(hotelAccount==""){
+            $.alert('请输入账号！');
             return
         }
-        if(vm.data.password==''){
-            myApp.modal({
-                title:  '提示',
-                text: '请输入密码！',
-                buttons: [
-                    {
-                        text: '确定'
-                    }
-                ]
-            })
+        if(password==""){
+            $.alert('请输入密码！');
           return
         }
-
+        // var weChatId = COMMON.COMMONuTIL.getQueryString('weChatId');
+        var weChatId =1111;
+        $.showPreloader();
+        $.ajax({
+            type : 'GET',
+            dataType: 'json',
+            url :CONST.DOMAIN.WX_SERVER + '?operation=Bind&weChatId=' + weChatId+"&loginName="+hotelAccount+"&password="+password,
+            error : function () {
+                $.hidePreloader();
+                $.alert('绑定账号出现错误');
+            },
+            success : function (res) {
+                $.hidePreloader();
+                if (res._MSG_ && res._MSG_.split(",")[0] == "OK") {
+                    $.alert('绑定账号成功');
+                    // 12017110201
+                }else{
+                    $.alert(res._ERRORMESSAGE_);
+                }
+            }
+        })
+        // var $jump = $('#jump');
+        // $jump.show();
     }
 });
