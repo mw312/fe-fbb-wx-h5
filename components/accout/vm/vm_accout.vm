@@ -19,7 +19,6 @@ var vm_accout = avalon.define({
           return
         }
         var weChatId = COMMON.COMMONuTIL.getQueryString('weChatId');
-        // var weChatId =1111;
         $.showPreloader();
         $.ajax({
             type : 'GET',
@@ -32,7 +31,7 @@ var vm_accout = avalon.define({
             success : function (res) {
                 $.hidePreloader();
                 if (res._MSG_ && res._MSG_.split(",")[0] == "OK") {
-                    // alert(1);
+                    $.alert('绑定账号成功');
                     // window.location.href="jump.html"
                 }else{
                     $.alert(res._ERRORMESSAGE_);
