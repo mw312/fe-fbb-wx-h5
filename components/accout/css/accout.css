@@ -6,13 +6,26 @@ html{
     /*rem的参考*/
     font-size: 15px;
 }
-body{
-    background-color: #fff;
-}
 .main{
-    margin: 0 auto;
     max-width: 540px;
     width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    transform:translateX(-50%);
+    -webkit-transform:translateX(-50%);
+    background-color: #f2f2f2;
+}
+.contain{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index:999;
     background-color: #f2f2f2;
 }
 .accout-header{
@@ -21,8 +34,8 @@ body{
     position: relative;
 }
 .accout-img{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,6 +45,11 @@ body{
 .accout-img img{
     width:100%;
     height: 100%;
+}
+.accout-success{
+    font-size: 1rem;
+    margin-top:2rem;
+    color:  #379ffa;
 }
 .accout-input{
     height: 200px;
@@ -73,9 +91,6 @@ body{
     height: 1px;
     background: #eeeae9;
    margin: 0 5%;
-}
-.accout-footer{
-    height: 280px;
 }
 .accout-footer button{
     width: 80%;
