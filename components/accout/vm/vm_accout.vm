@@ -1,13 +1,42 @@
-// var COMMON = require('../../common/js/common.js');
-// var CONST = require('../../common/const.js');
-// var vm_report = avalon.define({
-//     $id : 'vm_report',
-//     from: '',
-//     to: '',
-//     init: function () {
-//         var vm = vm_report;
-//         vm.from = tmsky.date.plusDate(COMMON.DATE.today(), -6, 'd', 'yyyy-MM-dd');
-//         vm.to = COMMON.DATE.today();
-//         vm.renderReport();
-//     }
-// });
+var COMMON = require('../../common/js/common.js');
+var CONST = require('../../common/const.js');
+var vm_accout = avalon.define({
+    $id : 'vm_accout',
+    data:{
+        password:'',
+        hotelAccount:''
+    },
+    init: function () {
+        // 初始化时清空账号和密码
+        vm_accout.data.hotelAccount=''
+        vm_accout.data.password=''
+    },
+    bindAccout:function(){
+        vm = vm_accout;
+        if(vm.data.hotelAccount==''){
+            myApp.modal({
+                title:  '提示',
+                text: '请输入账号！',
+                buttons: [
+                    {
+                        text: '确定'
+                    }
+                ]
+            })
+            return
+        }
+        if(vm.data.password==''){
+            myApp.modal({
+                title:  '提示',
+                text: '请输入密码！',
+                buttons: [
+                    {
+                        text: '确定'
+                    }
+                ]
+            })
+          return
+        }
+
+    }
+});

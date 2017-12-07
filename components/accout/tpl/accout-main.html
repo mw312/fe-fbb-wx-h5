@@ -7,19 +7,16 @@
         </div>
         <div class="accout-input">
             <div class="accout-box">
-                <input type="text" placeholder="请输入你的账号" >
+                <input type="text" placeholder="请输入你的账号"  ms-duplex="data.hotelAccount">
             </div>
              <div class="line"></div>
             <div class="accout-ps">
-                <input type="password" placeholder="请输入账号密码">
+                <input type="password" placeholder="请输入账号密码"  ms-duplex="data.password">
             </div>
 
         </div>
         <div class="accout-footer">
-            <div  class="accout-footer-btn">
-                立即绑定
-            </div>
-
+                <button class="inn-btn-red"    ms-click="bindAccout()">立即绑定</button>
         </div>
     </div>
 </div>
