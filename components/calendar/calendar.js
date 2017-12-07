@@ -83,23 +83,23 @@ var canlender = {
                     $(aLi[i]).addClass('color-red')
                 }
             }
-            //将今日之前的日期颜色变灰
-            // var nowday = new Date();
-            // var today = nowday.getDate();
+            // 将今日之后的日期颜色变灰
+            var nowday = new Date();
+            var today = nowday.getDate();
             // if (year < nowday.getFullYear() || (year == nowday.getFullYear() && month < nowday.getMonth() + 1)) {
             //     for (var i = 0; i < aLi.length; i++) {
             //         $(aLi[i]).css('color', '#ccc');
             //         $(aLi[i]).addClass('color-c')
             //     }
             // }
-            // if (year == nowday.getFullYear() && month == nowday.getMonth() + 1) {
-            //     for (var i = 0; i < aLi.length; i++) {
-            //         if (i < today + day - 1) {
-            //             $(aLi[i]).css('color', '#ccc');
-            //             $(aLi[i]).addClass('color-c')
-            //         }
-            //     }
-            // }
+            if (year == nowday.getFullYear() && month == nowday.getMonth() + 1) {
+                for (var i = 0; i < aLi.length; i++) {
+                    if (i > today + day - 1) {
+                        $(aLi[i]).css('color', '#ccc');
+                        $(aLi[i]).addClass('color-c')
+                    }
+                }
+            }
         }
 
         // $(".date-box").scroll(function () {
@@ -114,14 +114,14 @@ var canlender = {
         $('.day-num').on('click', function () {
             if (!$(this).hasClass('color-c')) {
                 if ($('.date-box .selected').length == 0) {
-                    $('.date-text').remove()
-                    $(this).addClass('selected')
-                    $(this).append("<b class='date-text'>" + beginStr + "</b>")
+                    $('.date-text').remove();
+                    $(this).addClass('selected');
+                    $(this).append("<b class='date-text'>" + beginStr + "</b>");
                 } else if ($('.date-box .selected').length == 1) {
-                    var first = $('.date-box .selected').find('input').val()
-                    var index1 = $('.date-box .selected').index()
-                    var now = $(this).find('input').val()
-                    var diff = COMMON.DATE.getDatePeriod(first, now, 'd')
+                    var first = $('.date-box .selected').find('input').val();
+                    var index1 = $('.date-box .selected').index();
+                    var now = $(this).find('input').val();
+                    var diff = COMMON.DATE.getDatePeriod(first, now, 'd');
                     if (diff > 0) {
                         var pindex1 = {
                             index: $('.date-box .selected').parents('section').index() - 2,
@@ -131,31 +131,32 @@ var canlender = {
                             index: $(this).parents('section').index() - 2,
                             length: $('.secondM').find('li').length
                         }
-                        var index2 = $(this).index()
+                        var index2 = $(this).index();
                         if (pindex2.index > 0 && pindex1.index == 0) {
                             if (pindex2.index == 1)
-                                index2 += pindex1.length
+                                index2 += pindex1.length;
                             else if (pindex2.index == 2)
-                                index2 += pindex1.length + pindex2.length
+                                index2 += pindex1.length + pindex2.length;
                         } else if (pindex2.index > 0 && pindex1.index > 0) {
                             if (pindex2.index == 1) {
-                                index1 += pindex1.length
-                                index2 += pindex1.length
+                                index1 += pindex1.length;
+                                index2 += pindex1.length;
                             } else if (pindex2.index == 2) {
-                                index1 += pindex1.length + pindex2.length
-                                index2 += pindex1.length + pindex2.length
+                                index1 += pindex1.length + pindex2.length;
+                                index2 += pindex1.length + pindex2.length;
                             }
                         }
                         for (var i = index1; i < index2; i++) {
                             if ($('.date-box section li').eq(i).hasClass('day-num') && !$('.date-box section li').eq(i).hasClass('color-c')) {
-                                $('.date-box section li').eq(i).addClass('selected')
+                                $('.date-box section li').eq(i).addClass('selected');
                             }
-
                         }
                         $(this).addClass('selected');
                         $(this).append("<b class='date-text'>" + endStr + "</b>");
                         if ($('.date-box .selected').length > maxDays) {
                             $.alert("最多只能选择一周！");
+                            $('.date-text').remove();
+                            $('.date-box .selected').removeClass('selected');
                             return false;
                         }
                         setTimeout(function () {
@@ -166,26 +167,26 @@ var canlender = {
                         //     $calendar.css({display: 'none'})
                         // }, 200);
                         if (callback) {
-                            callback(first, now)
+                            callback(first, now);
                         }
                     } else if (diff == 0) {
-                        $('.date-text').remove()
-                        $('.date-box .selected').removeClass('selected')
+                        $('.date-text').remove();
+                        $('.date-box .selected').removeClass('selected');
                     }
                 } else {
-                    $('.date-text').remove()
-                    $('.date-box .selected').removeClass('selected')
+                    $('.date-text').remove();
+                    $('.date-box .selected').removeClass('selected');
                 }
             }
         });
         $('#back').on('click', function () {
-            var $calendar = $('#calendar')
+            var $calendar = $('#calendar');
             // $calendar.animate({opacity : 0}, 600, 'ease-in', function () {
             //     $calendar.css({display : 'none'})
             // });
             $calendar.hide();
-            $('.date-text').remove()
-            $('.date-box .selected').removeClass('selected')
+            $('.date-text').remove();
+            $('.date-box .selected').removeClass('selected');
         })
     },
     updateSelectDateState: function (from, to) {

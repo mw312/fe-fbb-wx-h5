@@ -246,6 +246,12 @@ var CommonUtil = {
         winname.document.writeln(strHTML);
         winname.document.execCommand('saveas', '', ' 假植情况报表.xls');
         winname.close();
+    },
+    getQueryString: function () {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
     }
 }
 

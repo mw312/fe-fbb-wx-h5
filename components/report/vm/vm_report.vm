@@ -3,7 +3,7 @@ var CONST = require('../../common/const.js');
 var calendar = require('../../calendar/calendar.js');
 
 var vm_report = avalon.define({
-    $id : 'vm_report',
+    $id: 'vm_report',
     from: '',
     to: '',
     init: function () {
@@ -18,80 +18,101 @@ var vm_report = avalon.define({
         vm.renderReport();
     },
     renderReport: function () {
-        var myChart = echarts.init(document.getElementById('charts'));
-        var option = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
-                    }
-                }
+        var openId = "oM3lKwdXjmdOS-lPaewtT_vWVQO8";
+        $.showPreloader();
+        $.ajax({
+            type : 'GET',
+            dataType: 'json',
+            url : CONST.DOMAIN.WX_SERVER + '?operation=Report&weChatId=' + openId + "&beginTime=" + vm_report.from.replace(/-/g, "") + "&endTime=" + vm_report.to.replace(/-/g, ""),
+            error : function () {
+                $.hidePreloader();
+                $.alert('查询报表出现错误');
             },
-            // toolbox: {
-            //     feature: {
-            //         dataView: {show: true, readOnly: false},
-            //         magicType: {show: true, type: ['line', 'bar']},
-            //         restore: {show: true},
-            //         saveAsImage: {show: true}
-            //     }
-            // },
-            legend: {
-                data:['蒸发量','降水量']
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月'],
-                    axisPointer: {
-                        type: 'shadow'
+            success : function (res) {
+                $.hidePreloader();
+                if (res._MSG_ && res._MSG_.split(",")[0] == "OK") {
+                    var dates = [], dateDatas = [];
+                    var diffDay = COMMON.DATE.getDatePeriod(vm_report.from, vm_report.to, 'd');
+                    for (var i = 0; i < diffDay + 1; i++) {
+                        dates.push(COMMON.DATE.plusDate(vm_report.from, i, 'd', 'MM-dd'));
+                        dateDatas.push(COMMON.DATE.plusDate(vm_report.from, i, 'd', 'yyyyMMdd'));
                     }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    name: '水量',
-                    min: 0,
-                    max: 250,
-                    interval: 50,
-                    axisLabel: {
-                        formatter: '{value} ml'
+                    var finances = [], percents = [];
+                    for (var i = 0; i < dateDatas.length; i++) {
+                        for (var j = 0; j < res.data_fangfei.length; j++) {
+                            if (res.data_fangfei[j].ORDER_DATE == dateDatas[i]) {
+                                finances.push((res.data_fangfei[j].fangfei / 100).toFixed(2));
+                                break;
+                            }
+                        }
                     }
-                },
-                {
-                    type: 'value',
-                    name: '温度',
-                    min: 0,
-                    max: 25,
-                    interval: 5,
-                    axisLabel: {
-                        formatter: '{value} °C'
+                    for (var i = 0; i < dateDatas.length; i++) {
+                        for (var j = 0; j < res.data_chuzulu.length; j++) {
+                            if (res.data_chuzulu[j].ORDER_DATE == dateDatas[i]) {
+                                percents.push((res.data_chuzulu[j].INROOMNUM * 100 / res.data_chuzulu[j].ROOMNUM).toFixed(2));
+                                break;
+                            }
+                        }
                     }
-                }
-            ],
-            series: [
-                {
-                    name:'蒸发量',
-                    type:'bar',
-                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6]
-                },
-                {
-                    name:'降水量',
-                    type:'bar',
-                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6]
-                }
-                // ,
-                // {
-                //     name:'平均温度',
-                //     type:'line',
-                //     yAxisIndex: 1,
-                //     data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-                // }
-            ]
-        };
-        myChart.setOption(option);
+                    var myChart = echarts.init(document.getElementById('charts'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                crossStyle: {
+                                    color: '#999'
+                                }
+                            }
+                        },
+                        legend: {
+                            data: ['出租率', '房费收入']
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: dates,
+                                axisPointer: {
+                                    type: 'shadow'
+                                }
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: '出租率',
+                                axisLabel: {
+                                    formatter: '{value} %'
+                                }
+                            },
+                            {
+                                type: 'value',
+                                name: '房费收入',
+                                axisLabel: {
+                                    formatter: '{value} 元'
+                                }
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '出租率',
+                                type: 'line',
+                                yAxisIndex: 0,
+                                data: percents
+                            },
+                            {
+                                name: '房费收入',
+                                type: 'bar',
+                                yAxisIndex: 1,
+                                data: finances
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                } else
+                    $.alert(res._ERRORMESSAGE_);
+            }
+        });
     },
     openCalender: function () {
         var $calendar = $('#calendar');

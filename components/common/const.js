@@ -5,19 +5,19 @@
 //各环境，各系统域名
 var _DOMAIN_CONST_ = {
         LOCAL : {
-            BILL : 'http://localhost:8080',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
             PMS : 'http://pms.local.fanqiele.com',
         },
         INNER_TEST : {
-            BILL : 'http://bill.local.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
             PMS : 'http://pms.local.fanqiele.com',
         },
         ONLINE_TEST : {
-            BILL : 'http://bill.test.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
             PMS : 'http://pms.test.fanqiele.com',
         },
         ONLINE : {
-            BILL : 'http://bill.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
             PMS : 'http://www.fanqiele.com',
         }
     },
@@ -26,5 +26,5 @@ var _DOMAIN_CONST_ = {
     DOMAIN = _DOMAIN_CONST_.ONLINE
 
 module.exports = {
-    DOMAIN : DOMAIN,
+    DOMAIN : DOMAIN
 }
