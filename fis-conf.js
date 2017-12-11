@@ -66,20 +66,46 @@ fis.media('dev').match('*.{js,css,png}', {
     optimizer: null
 });
 
-// 如果需要发布到其他目录
-//fis.match('*', {
-//    deploy: fis.plugin('local-deliver', {
-//        to: 'D:\\module1\\'
-//    })
-//})
-
 // 发布到远程机
 fis.media('inner').match('*', {
-   deploy: fis.plugin('http-push', {
-       receiver: 'http://192.168.20.65:8999/receiver',
-       //远端目录
-       to: '/data/static/assets/fe-fbb-wx-h5'
-   })
+    optimizer: null,
+    deploy: [
+        fis.plugin('replace', {
+            from : '_DOMAIN_CONST_.LOCAL',
+            to : '_DOMAIN_CONST_.INNER'
+        }),
+        fis.plugin('http-push', {
+            receiver: 'http://192.168.20.65:8999/receiver',
+            //远端目录
+            to: '/data/static/assets/fe-fbb-wx-h5'
+        })
+    ]
 })
 
-// 发布 fis3 release pro -d ./fe-fbb-wx-h5
+fis.media('simu').match('*', {
+    deploy: [
+        fis.plugin('replace', {
+            from : '_DOMAIN_CONST_.LOCAL',
+            to : '_DOMAIN_CONST_.SIMULATION'
+        }),
+        //发布到本地
+        fis.plugin('local-deliver',{
+            to: "./simu/fe-fbb-wx-h5"
+        })
+    ]
+})
+
+fis.media('pro').match('*', {
+    deploy: [
+        fis.plugin('replace', {
+            from : '_DOMAIN_CONST_.LOCAL',
+            to : '_DOMAIN_CONST_.PRODUCTION'
+        }),
+        //发布到本地
+        fis.plugin('local-deliver',{
+            to: "./pro/fe-fbb-wx-h5"
+        })
+    ]
+})
+
+// 生产发布 fis3 release pro -d ./fe-fbb-wx-h5

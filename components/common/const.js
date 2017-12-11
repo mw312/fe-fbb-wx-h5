@@ -7,10 +7,10 @@ var _DOMAIN_CONST_ = {
         LOCAL : {
             WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
-        INNER_TEST : {
+        INNER : {
             WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
-        STAGING : {
+        SIMULATION : {
             WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
         PRODUCTION : {
@@ -18,7 +18,7 @@ var _DOMAIN_CONST_ = {
         }
     },
 
-//当前所用环境域名，开发用非_DOMAIN_CONST_.LOCAL，生成环境用_DOMAIN_CONST_.ONLINE
+    //当前所用环境域名，开发用非_DOMAIN_CONST_.LOCAL，生成环境用_DOMAIN_CONST_.PRODUCTION
     DOMAIN = _DOMAIN_CONST_.LOCAL
 
 module.exports = {
