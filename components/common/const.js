@@ -5,25 +5,21 @@
 //各环境，各系统域名
 var _DOMAIN_CONST_ = {
         LOCAL : {
-            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
-            PMS : 'http://pms.local.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
         INNER_TEST : {
-            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
-            PMS : 'http://pms.local.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
         ONLINE_TEST : {
-            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
-            PMS : 'http://pms.test.fanqiele.com',
+            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
         ONLINE : {
-            WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet',
-            PMS : 'http://www.fanqiele.com',
+            WX_SERVER : 'http://preupgrade.congqipms.com/wechat/recewechatmessageservlet'
         }
     },
 
 //当前所用环境域名，开发用非_DOMAIN_CONST_.LOCAL，生成环境用_DOMAIN_CONST_.ONLINE
-    DOMAIN = _DOMAIN_CONST_.ONLINE
+    DOMAIN = _DOMAIN_CONST_.LOCAL
 
 module.exports = {
     DOMAIN : DOMAIN
