@@ -1,22 +1,8 @@
 // 环境相关配置
 var __ReleaseConfig__ = {
-    version : '1.0.0',
-    env : 'release',// 环境：可取值('release':生产环境; 'staging':线上测试环境; 'test':本地测试环境[可据实际情况而自行设置];)
-    release : {
-        domain : 'http://bill.fanqiele.com'
-    },
-    staging : {
-        domain : 'http://bill.test.fanqiele.com'
-    },
-    test : {
-        domain : 'http://bill.local.fanqiele.com'
-    },
-    domain : function() {
-        return this[this.env].domain
-    }
+    version : '1.0.0'
 }
 fis.set('version', __ReleaseConfig__.version);
-fis.set('domain', __ReleaseConfig__.domain());
 fis.set('project.ignore', ['/.idea/**']);
 // 使用commonjs模块化
 fis.hook('commonjs');
@@ -59,11 +45,6 @@ fis.media('pro').match('*.css', {
     // fis-optimizer-clean-css 插件进行压缩，已内置
     optimizer: fis.plugin('clean-css'),
     //packTo: '/sty.css'
-});
-
-// 生产发布加域名
-fis.media('pro').match('*.{js,css,png,wav,swf}', {
-    //domain: fis.get('domain'),
 });
 
 // 模块化开发

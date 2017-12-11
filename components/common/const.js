@@ -10,10 +10,10 @@ var _DOMAIN_CONST_ = {
         INNER_TEST : {
             WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
-        ONLINE_TEST : {
+        STAGING : {
             WX_SERVER : 'http://preupgradesimu.congqipms.com/wechat/recewechatmessageservlet'
         },
-        ONLINE : {
+        PRODUCTION : {
             WX_SERVER : 'http://preupgrade.congqipms.com/wechat/recewechatmessageservlet'
         }
     },
