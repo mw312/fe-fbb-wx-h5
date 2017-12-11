@@ -18,7 +18,7 @@ var vm_report = avalon.define({
         vm.renderReport();
     },
     renderReport: function () {
-        var weChatId = COMMON.COMMONuTIL.getQueryString('weChatId');
+        var weChatId = COMMON.CommonUtil.getQueryString('weChatId');
         $.showPreloader();
         $.ajax({
             type : 'GET',
